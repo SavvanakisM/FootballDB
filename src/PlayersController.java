@@ -49,10 +49,11 @@ public class PlayersController {
     public void showPlayer(){
         
         int playerId = -1;
-        playerId = AppUtils.idChecker("Please enter the name of the player you want to show: ", "Player not found, please try again: ", scanner, playersIndex);
-        Player p = players.get(playerId);
-        System.out.println("\nPlayer Info:\nName: "+p.name+"\nSurname: "+p.sur+"\nAge: "+p.age+"\nTeam: "+p.team);
-
+        playerId = AppUtils.idChecker("Please enter the surname of the player you want to show: ", "Player not found, please try again: ", scanner, playersIndex);
+        if(playerId!=-1){
+            Player p = players.get(playerId);
+            System.out.println("\nPlayer Info:\nName: "+p.name+"\nSurname: "+p.sur+"\nAge: "+p.age+"\nTeam: "+p.team);
+        }
     }
 
     //-----------------------------------------------------------------------------------------------------------------------------
@@ -81,8 +82,14 @@ public class PlayersController {
         int teamId = -1;
         teamId = AppUtils.idChecker("Please enter the name of the team to which the player is transferring: ", "Team not found, please try again: ", scanner, teamsIndex);
 
-        String newTeam = teams.get(teamId).getName();
-        transfers.get(playerId).add(newTeam);
-        players.get(playerId).setTeam(newTeam);
+        if(teamId!=-1){
+            String newTeam = teams.get(teamId).getName();
+            transfers.get(playerId).add(newTeam);
+            players.get(playerId).setTeam(newTeam);
+        }
     }   
+
+    public void ageSetter(int num, int ind){
+        players.get(ind).setAge(num);
+    }
 }

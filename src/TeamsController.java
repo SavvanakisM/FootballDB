@@ -38,9 +38,10 @@ public class TeamsController {
 
         int teamId = -1;
         teamId = AppUtils.idChecker("Please enter the name of the team you want to show: ", "Team not found, please try again: ", scanner, teamsIndex);
-        Team team = teams.get(teamId);
-        System.out.println("\nTeam Info:\nName: " + team.getName() + "\nCity: " + team.city + "\nTitles: " + team.titles + "\nYear Founded: " + team.yearFounded);
-
+        if(teamId!=-1){
+            Team team = teams.get(teamId);
+            System.out.println("\nTeam Info:\nName: " + team.getName() + "\nCity: " + team.city + "\nTitles: " + team.titles + "\nYear Founded: " + team.yearFounded);
+        }
     }
 
     //Get Teams Method
@@ -51,6 +52,18 @@ public class TeamsController {
     //Get Teams Index Method
     public HashMap<String, Integer> getTeamsIndex(){
         return teamsIndex;
+    }
+
+    public void citySetter(String name, int ind){
+        teams.get(ind).setCity(name);
+    }
+
+    public void titlesSetter(int num, int ind){
+        teams.get(ind).setTitles(num);
+    }
+
+    public void yearFoundedSetter(int num, int ind){
+        teams.get(ind).setYearFounded(num);
     }
 
 }
