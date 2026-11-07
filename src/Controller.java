@@ -37,6 +37,8 @@ public class Controller {
                 break;
             // Option EXIT
             case "5":
+                teamsController.saveTeams();
+                playersController.savePlayers();
                 break;
             default:
                 System.out.println("Invalid option. Please try again.");

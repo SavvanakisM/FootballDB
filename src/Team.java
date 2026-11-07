@@ -1,4 +1,6 @@
-public class Team {
+import java.io.Serializable;
+
+public class Team implements Serializable{
 
     String name,city;
     int titles, yearFounded;
@@ -25,5 +27,4 @@ public class Team {
     public void setYearFounded(int yearFounded){
         this.yearFounded = yearFounded;
     }
-
 }

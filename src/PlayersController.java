@@ -1,25 +1,28 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class PlayersController {
-
     private Scanner scanner;
+    private HashMap<Integer, Player> players = new HashMap<>();
+    private HashMap<String, Integer> playersIndex = new HashMap<>();
+    private HashMap<Integer, List<String>> transfers = new HashMap<>();
+    private int idp=0;
 
     public PlayersController(Scanner scanner){
         this.scanner = scanner;
+        loadPlayers();
     }
-
-    HashMap<Integer, Player> players = new HashMap<>();
-    HashMap<String, Integer> playersIndex = new HashMap<>();
-    HashMap<Integer, List<String>> transfers = new HashMap<>();
-
-    int idp=0;
 
     //Add Player Method
     public void addPlayer(HashMap<String, Integer> teamsIndex){
-
         System.out.println("\nPlease enter player's info:\nName: ");
         String s1=scanner.nextLine();
         System.out.println("Surname: ");    
@@ -91,5 +94,32 @@ public class PlayersController {
 
     public void ageSetter(int num, int ind){
         players.get(ind).setAge(num);
+    }
+
+    public void savePlayers(){
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("players.dat"))){
+            oos.writeObject(players);
+            oos.writeObject(playersIndex);
+            oos.writeObject(transfers);
+        } catch(IOException e){
+            System.out.println("Error saving players:" + e.getMessage());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadPlayers(){
+        File file = new File("players.dat");
+        if(!file.exists()){
+            return;
+        }
+
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
+            players = (HashMap<Integer, Player>) ois.readObject();
+            playersIndex = (HashMap<String, Integer>) ois.readObject();
+            transfers = (HashMap<Integer, List<String>>) ois.readObject();
+            idp = players.size();
+        } catch (Exception e) {
+            System.out.println("Error loading players:" + e.getMessage());
+        }
     }
 }

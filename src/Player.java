@@ -1,6 +1,6 @@
-//import java.util.Scanner;
+import java.io.Serializable;
 
-public class Player {
+public class Player implements Serializable{
 
     String name, sur, team;
     int age;
