@@ -1,0 +1,13 @@
+# Compiled files
+*.class
+bin/
+
+# Runtime data files
+*.dat
+
+# IDE files
+.vscode/
+.idea/
+.settings/
+.classpath
+.project

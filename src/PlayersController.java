@@ -27,6 +27,10 @@ public class PlayersController {
         String s1=scanner.nextLine();
         System.out.println("Surname: ");    
         String s2=scanner.nextLine();
+        s2 = AppUtils.duplChecker(s2, playersIndex, scanner);
+        if(s2.equals("")){
+            return;
+        }
         System.out.println("Age: ");
         int n1=scanner.nextInt();
         scanner.nextLine();

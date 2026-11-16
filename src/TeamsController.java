@@ -22,6 +22,10 @@ public class TeamsController {
     public void addTeam() {
         System.out.println("\nPlease enter team's info:\nName: ");
         String s1=scanner.nextLine();
+        s1 = AppUtils.duplChecker(s1, teamsIndex, scanner);
+        if(s1.equals("")){
+            return;
+        }
         System.out.println("City: ");
         String s2=scanner.nextLine();
         System.out.println("Titles: ");
@@ -68,13 +72,13 @@ public class TeamsController {
     }
 
     public void saveTeams(){
-        //Δημιουργία Ροών (Streams)
+        // Create Streams
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("teams.dat"))){
-            //Εγγραφή των δεδομένων
+            // Write data
             oos.writeObject(teams);
             oos.writeObject(teamsIndex);
         } catch(IOException e){
-            //Διαχείριση σφάλματος
+            // Error handling
             System.out.println("Error saving teams:" + e.getMessage());
         }
     }
