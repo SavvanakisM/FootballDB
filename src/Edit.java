@@ -41,15 +41,15 @@ public class Edit {
             String option = scanner.nextLine();
 
             if(option.equals("1")){
-                //Περνάω το index της συγκεκριμένης ομάδας και την νέα πόλη και το set γίνεται στην TeamsController
+                // Pass the specific team's index and the new city; the update is handled in TeamsController
                 teamsController.citySetter(editString(ind), ind);
             }
             else if(option.equals("2")){
-                //Περνάω το index της συγκεκριμένης ομάδας και τους νέους τίτλους και το set γίνεται στην TeamsController
+                // Pass the specific team's index and the new titles; the update is handled in TeamsController
                 teamsController.titlesSetter(editInteger(ind), ind);
             }
             else if(option.equals("3")){
-                //Περνάω το index της συγκεκριμένης ομάδας και την νέα χρονιά ίδρυσης και το set γίνεται στην TeamsController
+                // Pass the specific team's index and the new founding year; the update is handled in TeamsController
                 teamsController.yearFoundedSetter(editInteger(ind), ind);
             }
             else if(option.equals("4")){
@@ -70,7 +70,7 @@ public class Edit {
             String option = scanner.nextLine();
 
             if(option.equals("1")){
-                //Περνάω το index του συγκεκριμένου παίκτη και την νέα ηλικία και το set γίνεται στην PlayersController
+                // Pass the specific player's index and the new age; the update is handled in PlayersController
                 playersController.ageSetter(editInteger(ind), ind);
             }
             else if(option.equals("2")){
